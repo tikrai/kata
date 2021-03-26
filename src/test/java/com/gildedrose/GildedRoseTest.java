@@ -2,16 +2,17 @@ package com.gildedrose;
 
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static com.gildedrose.matchers.ItemMatcher.matches;
+import static org.hamcrest.MatcherAssert.assertThat;
 
 class GildedRoseTest {
 
     @Test
-    void foo() {
-        Item[] items = new Item[] { new Item("foo", 0, 0) };
-        GildedRose app = new GildedRose(items);
-        app.updateQuality();
-        assertEquals("fixme", app.items[0].name);
+    void updateRegularItem() {
+        Item item = new Item("foo", 10, 10);
+        GildedRose app = new GildedRose(item);
+        Item[] updatedItems = app.updateQuality();
+        assertThat(updatedItems[0], matches(new Item("foo", 9, 9)));
     }
 
 }
