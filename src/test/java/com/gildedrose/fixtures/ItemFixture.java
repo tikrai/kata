@@ -20,6 +20,10 @@ public class ItemFixture {
     return new ItemFixture().name("Sulfuras, Hand of Ragnaros");
   }
 
+  public static ItemFixture passes() {
+    return new ItemFixture().name("Backstage passes to a TAFKAL80ETC concert");
+  }
+
   public ItemFixture name(String name) {
     this.name = name;
     return this;
