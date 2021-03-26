@@ -35,4 +35,11 @@ class SulfurasUpdateTest {
         Item[] updatedItems = app.updateQuality();
         assertThat(updatedItems[0], matches(ItemFixture.sulfuras().sellIn(0).quality(0).build()));
     }
+
+    @Test
+    void updateEarlierExpiredSulfuras() {
+        GildedRose app = new GildedRose(ItemFixture.sulfuras().sellIn(-1).quality(1).build());
+        Item[] updatedItems = app.updateQuality();
+        assertThat(updatedItems[0], matches(ItemFixture.sulfuras().sellIn(-1).quality(1).build()));
+    }
 }
