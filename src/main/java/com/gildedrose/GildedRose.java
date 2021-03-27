@@ -11,6 +11,7 @@ class GildedRose {
     private final static String PASSES = "Backstage passes to a TAFKAL80ETC concert";
     private final static String SULFURAS = "Sulfuras, Hand of Ragnaros";
     private final static String AGED_BRIE = "Aged Brie";
+    private final static String CONJURED = "Conjured item";
 
     Item[] items;
 
@@ -27,6 +28,8 @@ class GildedRose {
             ifNameIs(PASSES).increaseQualityBy(1),
             ifNameIs(AGED_BRIE).andSellInLessThan(1).increaseQualityBy(2),
             ifNameIs(AGED_BRIE).increaseQualityBy(1),
+            ifNameIs(CONJURED).andSellInLessThan(1).reduceQualityBy(4),
+            ifNameIs(CONJURED).reduceQualityBy(2),
             ifNameIsAny().andSellInLessThan(1).reduceQualityBy(2));
 
         return Arrays.stream(items)

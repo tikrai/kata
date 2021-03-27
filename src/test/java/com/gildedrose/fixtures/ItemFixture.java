@@ -24,6 +24,10 @@ public class ItemFixture {
     return new ItemFixture().name("Backstage passes to a TAFKAL80ETC concert");
   }
 
+  public static ItemFixture conjured() {
+    return new ItemFixture().name("Conjured item");
+  }
+
   public ItemFixture name(String name) {
     this.name = name;
     return this;
