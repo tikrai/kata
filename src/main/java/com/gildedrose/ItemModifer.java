@@ -4,6 +4,9 @@ import java.util.function.Function;
 import java.util.function.Predicate;
 
 public class ItemModifer {
+    private static final int MAX_QUALITY = 50;
+    private static final int MIN_QUALITY = 0;
+
     private final Predicate<String> namePredicate;
     private final Predicate<Integer> sellInPredicate;
     private final Function<Integer, Integer> sellInModifier;
@@ -29,12 +32,10 @@ public class ItemModifer {
     }
 
     public Item modify() {
-        int maxQuality = 50;
-        int minQuality = 0;
         return new Item(
             item.name,
             sellInModifier.apply(item.sellIn),
-            Math.max(minQuality, Math.min(qualityModifier.apply(item.quality), maxQuality))
+            Math.max(MIN_QUALITY, Math.min(qualityModifier.apply(item.quality), MAX_QUALITY))
         );
     }
 }

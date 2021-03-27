@@ -5,13 +5,13 @@ import java.util.function.Predicate;
 
 public class ItemRule {
 
-    private final Predicate<String> name;
-    private Predicate<Integer> sellIn = x -> true;
+    private final Predicate<String> namePredicate;
+    private Predicate<Integer> sellInPredicate = x -> true;
     private Function<Integer, Integer> sellInModifier = x -> x - 1;
     private Function<Integer, Integer> qualityModifier = x -> x - 1;
 
-    public ItemRule(Predicate<String> name) {
-        this.name = name;
+    public ItemRule(Predicate<String> namePredicate) {
+        this.namePredicate = namePredicate;
     }
 
     public static ItemRule ifNameIsAny() {
@@ -22,8 +22,8 @@ public class ItemRule {
         return new ItemRule(s -> s.equals(name));
     }
 
-    public ItemRule ifSellIn(Predicate<Integer> sellIn) {
-        this.sellIn = sellIn;
+    public ItemRule ifSellIn(Predicate<Integer> sellInPredicate) {
+        this.sellInPredicate = sellInPredicate;
         return this;
     }
 
@@ -54,6 +54,6 @@ public class ItemRule {
     }
 
     public ItemModifer getModifierFor(Item item) {
-        return new ItemModifer(name, sellIn, sellInModifier, qualityModifier, item);
+        return new ItemModifer(namePredicate, sellInPredicate, sellInModifier, qualityModifier, item);
     }
 }
